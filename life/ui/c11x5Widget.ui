@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>c11x5Widget</class>
+ <widget class="QMainWindow" name="c11x5Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>619</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>C11x5</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="tabhirstorydata">
+         <attribute name="title">
+          <string>历史数据</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QTableWidget" name="tableWidget_history"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabstatisticdata">
+         <attribute name="title">
+          <string>统计数据</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QTableWidget" name="tableWidget_statistic"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabglobaloccurrencestatistic">
+         <attribute name="title">
+          <string>全局重复次数</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QTableWidget" name="tableWidget_global_occurrencestatistic"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabselectedoccurrencestatistic">
+         <attribute name="title">
+          <string>选择行分析</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QTableWidget" name="tableWidget_selected_occurrencestatistic"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabdrawcanvas">
+         <attribute name="title">
+          <string>图表</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QFrame" name="widget_canvas">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3"/>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_system">
+    <property name="title">
+     <string>系统</string>
+    </property>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_plot">
+    <property name="title">
+     <string>绘图</string>
+    </property>
+    <addaction name="action_plotRepeatNumber"/>
+    <addaction name="action_distribution_analyze"/>
+    <addaction name="action_analyze_selected_distribution_local"/>
+    <addaction name="action_analyze_selected_distribution_global"/>
+    <addaction name="action_draw_distribution_animation"/>
+    <addaction name="separator"/>
+    <addaction name="action_draw_sample"/>
+   </widget>
+   <widget class="QMenu" name="menu_help">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action_about"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>分析</string>
+    </property>
+    <addaction name="action_startAnalyse"/>
+    <addaction name="action_analyze_selected"/>
+    <addaction name="action_select_from_yestorday"/>
+    <addaction name="action_select_by_global"/>
+    <addaction name="action_select_by_local"/>
+   </widget>
+   <addaction name="menu_system"/>
+   <addaction name="menu"/>
+   <addaction name="menu_plot"/>
+   <addaction name="menu_help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_exit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="action_plotRepeatNumber">
+   <property name="text">
+    <string>重复次数统计</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+  <action name="action_startAnalyse">
+   <property name="text">
+    <string>数据预分析</string>
+   </property>
+  </action>
+  <action name="action_analyze_selected">
+   <property name="text">
+    <string>选中数据分析</string>
+   </property>
+  </action>
+  <action name="action_draw_sample">
+   <property name="text">
+    <string>测试绘图</string>
+   </property>
+  </action>
+  <action name="action_select_from_yestorday">
+   <property name="text">
+    <string>任选一个昨天数据</string>
+   </property>
+  </action>
+  <action name="action_distribution_analyze">
+   <property name="text">
+    <string>概率分布特性</string>
+   </property>
+  </action>
+  <action name="action_analyze_selected_distribution_local">
+   <property name="text">
+    <string>选中行局部分布</string>
+   </property>
+  </action>
+  <action name="action_analyze_selected_distribution_global">
+   <property name="text">
+    <string>选中行全局分布</string>
+   </property>
+  </action>
+  <action name="action_draw_distribution_animation">
+   <property name="text">
+    <string>分布动态变化特性</string>
+   </property>
+  </action>
+  <action name="action_select_by_global">
+   <property name="text">
+    <string>按全局分布选</string>
+   </property>
+  </action>
+  <action name="action_select_by_local">
+   <property name="text">
+    <string>按局部分布选</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

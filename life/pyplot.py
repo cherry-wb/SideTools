@@ -169,8 +169,37 @@ class pyplotUI(QtGui.QMainWindow):
             align='center', 
             alpha=0.44,
             picker=5)
-        
+##	- 'button_press_event'
+##	- 'button_release_event'
+##	- 'draw_event'
+##	- 'key_press_event'
+##	- 'key_release_event'
+##	- 'motion_notify_event'
+##	- 'pick_event'
+##	- 'resize_event'
+##	- 'scroll_event'
+##	- 'figure_enter_event',
+##	- 'figure_leave_event',
+##	- 'axes_enter_event',
+##	- 'axes_leave_event'
+##	- 'close_event'	
+        self.canvas.mpl_connect('button_press_event', self.on_click)
+	self.canvas.mpl_connect('pick_event', self.on_pick)
         self.canvas.draw()	
+    #----------------------------------------------------------------------
+    def on_click(self, event):
+	""""""
+	print 'you pressed', event.button, event.xdata, event.ydata
+     #----------------------------------------------------------------------
+    def on_pick(self, event):
+	""""""
+	box_points = event.artist.get_bbox().get_points()
+	y = event.artist.get_height()
+	x = event.artist.get_x() + event.artist.get_width()/2
+	msg = "You've clicked on a bar x:%s y:%s with coords:\n %s " % (x,y,box_points)
+	self.axes.text(x, y, msg, bbox=dict(facecolor='red', alpha=0.5))
+	self.canvas.draw()
+	QMessageBox.about(self, "OnClick", msg.strip())
     #----------------------------------------------------------------------
     def on_animation_1(self):
 	""""""
@@ -201,7 +230,34 @@ class pyplotUI(QtGui.QMainWindow):
     #----------------------------------------------------------------------
     def on_animation_2(self):
 	""""""
+	self.axes.clear()        
+	self.axes.grid(True)
+	self.axes.set_xlim(0, 2)
+	self.axes.set_ylim(-2, 2)
 	
+	line, = self.axes.plot(np.random.rand(10))  
+	#因为update的参数是调用函数data_gen,所以第一个默认参数不能是framenum  
+	def update(data):  
+	    line.set_ydata(data)  
+	    self.axes.annotate('pixels', xy=(20, 20),  xycoords='figure pixels')
+	    self.axes.annotate('axes center', xy=(.5, .5),  xycoords='axes fraction',
+		          horizontalalignment='center', verticalalignment='center')
+	    self.axes.annotate('points', xy=(100, 300),  xycoords='figure points')
+	    self.axes.annotate('offset', xy=(1, 1),  xycoords='data',
+			  xytext=(-15, 10), textcoords='offset points',
+			  arrowprops=dict(facecolor='red', shrink=0.05),
+			  horizontalalignment='right', verticalalignment='bottom',
+			  )
+	    
+	    return line,  
+	# 每次生成10个随机数据  
+	def data_gen():  
+	    while True:  
+		yield np.random.rand(10)  
+	  
+	anim = animation.FuncAnimation(self.fig, update, data_gen, interval=2*1000)
+	
+	self.canvas.draw()
 #----------------------------------------------------------------------
 def main():
     """"""
